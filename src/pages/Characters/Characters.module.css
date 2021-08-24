@@ -1,0 +1,23 @@
+.cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.cards > div {
+  width: 33%;
+  margin-bottom: 15px;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination ul {
+  justify-content: center;
+}
+
+.pagination ul a {
+  font-family: 'Poppins', sans-serif;
+}
