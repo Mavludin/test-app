@@ -93,47 +93,52 @@ export const ReviewCard = ({
           </li>
         </ul>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {abilities.length > 0 && (
-            <>
-              <Typography paragraph>
-                <strong>Abilities:</strong>
-              </Typography>
-              <ul>
-                {abilities.map((ability) => {
-                  return <li key={ability}>{ability}</li>;
-                })}
-              </ul>
-            </>
-          )}
 
-          {aliases.length > 0 && (
-            <>
-              <Typography paragraph>
-                <strong>Alias:</strong>
-              </Typography>
-              <ul>
-                {aliases.map((alias) => {
-                  return <li key={alias}>{alias}</li>;
-                })}
-              </ul>
-            </>
-          )}
-        </CardContent>
-      </Collapse>
+      {!abilities.length && !aliases.length ? null : (
+        <>
+          <CardActions disableSpacing>
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded,
+              })}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              {abilities.length > 0 && (
+                <>
+                  <Typography paragraph>
+                    <strong>Abilities:</strong>
+                  </Typography>
+                  <ul>
+                    {abilities.map((ability) => {
+                      return <li key={ability}>{ability}</li>;
+                    })}
+                  </ul>
+                </>
+              )}
+
+              {aliases.length > 0 && (
+                <>
+                  <Typography paragraph>
+                    <strong>Alias:</strong>
+                  </Typography>
+                  <ul>
+                    {aliases.map((alias) => {
+                      return <li key={alias}>{alias}</li>;
+                    })}
+                  </ul>
+                </>
+              )}
+            </CardContent>
+          </Collapse>
+        </>
+      )}
     </Card>
   );
 };

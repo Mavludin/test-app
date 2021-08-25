@@ -18,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%", // 16:9
   },
   content: {
-    padding: "0 10px",
-    minHeight: "100px",
+    padding: "10px",
   },
   expand: {
     transform: "rotate(0deg)",
@@ -37,18 +36,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ReviewCard = ({
-  name,
-  air_date,
-  director,
-  writer,
-  characters,
-  img_url,
-}) => {
+export const ReviewCard = ({ name, type, inhabitants, img_url }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card classes={{ root: styles.root }} className={classes.root}>
       <CardHeader
         className={classes.header}
         avatar={
@@ -61,24 +53,25 @@ export const ReviewCard = ({
           </Avatar>
         }
         title={name}
-        subheader={
-          <>
-            <b>Air date: </b> {air_date}
-          </>
-        }
+        subheader={type}
       />
       <CardMedia className={classes.media} image={img_url} title={name} />
-      <CardContent className={classes.content}>
-        <ul className={styles.list}>
-          <li>
-            <strong>Director: </strong>
-            {director}
-          </li>
-          <li>
-            <strong>Writer: </strong>
-            {writer}
-          </li>
-        </ul>
+      <CardContent
+        classes={{ root: styles.content }}
+        className={classes.content}
+      >
+        {inhabitants.length > 0 ? (
+          <>
+            <strong>Inhabitants:</strong>
+            <ul>
+              {inhabitants.map((inhabitant) => {
+                return <li key={inhabitant}>{inhabitant}</li>;
+              })}
+            </ul>
+          </>
+        ) : (
+          <h4>No inhabitants</h4>
+        )}
       </CardContent>
     </Card>
   );

@@ -6,9 +6,6 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <nav>
-        <NavLink exact to="/" activeClassName={styles.active}>
-          Home
-        </NavLink>
         <NavLink exact to="/characters" activeClassName={styles.active}>
           Characters
         </NavLink>

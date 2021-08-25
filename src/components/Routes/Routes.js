@@ -1,13 +1,14 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { Characters } from "../../pages/Characters/Characters";
 import { Episodes } from "../../pages/Episodes/Episodes";
-import { Home } from "../../pages/Home/Home";
+import { Locations } from "../../pages/Locations/Locations";
+import { Quotes } from "../../pages/Quotes/Quotes";
 
 export const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/" render={(props) => <Home {...props} />} />
+      <Route exact path="/" render={(props) => <Redirect to="/characters" />} />
       <Route
         exact
         path="/characters"
@@ -18,6 +19,12 @@ export const Routes = () => {
         path="/episodes"
         render={(props) => <Episodes {...props} />}
       />
+      <Route
+        exact
+        path="/locations"
+        render={(props) => <Locations {...props} />}
+      />
+      <Route exact path="/quotes" render={(props) => <Quotes {...props} />} />
     </Switch>
   );
 };

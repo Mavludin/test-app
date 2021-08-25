@@ -6,6 +6,7 @@ import { Header } from "./components/Header/Header";
 import { Routes } from "./components/Routes/Routes";
 
 export const App = () => {
+
   return (
     <BrowserRouter>
       <div className="App">

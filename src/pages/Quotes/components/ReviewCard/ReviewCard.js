@@ -3,10 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 
 import styles from "./ReviewCard.module.css";
+import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     padding: "0 10px",
-    minHeight: "100px",
   },
   expand: {
     transform: "rotate(0deg)",
@@ -37,18 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ReviewCard = ({
-  name,
-  air_date,
-  director,
-  writer,
-  characters,
-  img_url,
-}) => {
+export const ReviewCard = ({ by, image, quote }) => {
   const classes = useStyles();
-
   return (
-    <Card className={classes.root}>
+    <Card classes={{ root: styles.root }} className={classes.root}>
       <CardHeader
         className={classes.header}
         avatar={
@@ -57,28 +48,20 @@ export const ReviewCard = ({
             className={classes.avatar}
             classes={{ root: styles.avatar }}
           >
-            {name[0]}
+            {by[0]}
           </Avatar>
         }
-        title={name}
-        subheader={
-          <>
-            <b>Air date: </b> {air_date}
-          </>
-        }
+        title={by}
       />
-      <CardMedia className={classes.media} image={img_url} title={name} />
-      <CardContent className={classes.content}>
-        <ul className={styles.list}>
-          <li>
-            <strong>Director: </strong>
-            {director}
-          </li>
-          <li>
-            <strong>Writer: </strong>
-            {writer}
-          </li>
-        </ul>
+      <CardMedia className={classes.media} image={image} title={by} />
+      <CardContent
+        classes={{ root: styles.content }}
+        className={classes.content}
+      >
+        <h3>Quote:</h3>
+        <p>
+          <i>{quote}</i>
+        </p>
       </CardContent>
     </Card>
   );

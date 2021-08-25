@@ -1,15 +1,15 @@
 import React from "react";
-import styles from "./Episodes.module.css";
-import { ReviewCard } from "./components/ReviewCard/ReviewCard";
+import { useQuery } from "react-query";
+import styles from "./Quotes.module.css";
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useQuery } from "react-query";
+import { ReviewCard } from "./components/ReviewCard/ReviewCard";
 
-export const Episodes = () => {
-  const { data, status } = useQuery("episodes", async () => {
-    const res = await fetch("https://finalspaceapi.com/api/v0/episode/");
+export const Quotes = () => {
+  const { data, status } = useQuery("quotes", async () => {
+    const res = await fetch("https://finalspaceapi.com/api/v0/quote/");
     return res.json();
   });
 
@@ -32,8 +32,8 @@ export const Episodes = () => {
   };
 
   return (
-    <div className="episodes">
-      <h1>Episodes</h1>
+    <div className="quotes">
+      <h1>Quotes</h1>
 
       {status === "loading" && <div>Loading data...</div>}
 
@@ -41,18 +41,14 @@ export const Episodes = () => {
       {status === "success" && (
         <>
           <section className={styles.cards}>
-            {currentData.map((episode) => {
+            {currentData.map((quote) => {
               return (
                 <ReviewCard
-                  key={episode.id}
-                  name={episode.name}
-                  air_date={episode.air_date}
-                  director={episode.director}
-                  writer={episode.writer}
-                  characters={episode.characters.map((char) =>
-                    char.substr(char.lastIndexOf("/") + 1)
-                  )}
-                  img_url={episode.img_url}
+                  key={quote.id}
+                  quote={quote.quote}
+                  by={quote.by}
+                  characterApi={quote.character}
+                  image={quote.image}
                 />
               );
             })}
@@ -67,7 +63,7 @@ export const Episodes = () => {
             renderItem={(item) => (
               <PaginationItem
                 component={Link}
-                to={`/episodes${item.page === 1 ? "" : `?page=${item.page}`}`}
+                to={`/quotes${item.page === 1 ? "" : `?page=${item.page}`}`}
                 {...item}
               />
             )}
