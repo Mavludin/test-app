@@ -1,7 +1,7 @@
 # This is a seafood catalog app.
 It consits of one single page through which the seafood data is requested from the following server and rendered:
 
-# Functionality:
+## Functionality:
 
 1. Fetching the data from the server and rendering it on the page as cards.
 2. Deleting a card.
